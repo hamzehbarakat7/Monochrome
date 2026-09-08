@@ -1,0 +1,86 @@
+/* Monochrome — injected page styles. All rules are namespaced under mono-* classes
+   and use !important sparingly, only where host-page styles are likely to fight us. */
+
+.mono-speed-overlay {
+  all: initial;
+  position: absolute;
+  z-index: 2147483000;
+  top: 8px;
+  left: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px;
+  background: rgba(0, 0, 0, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  opacity: 0;
+  transition: opacity 120ms ease;
+  pointer-events: none;
+}
+
+.mono-speed-overlay * {
+  all: unset;
+  box-sizing: border-box;
+  font-family: inherit;
+  color: inherit;
+}
+
+.mono-video-wrap:hover .mono-speed-overlay,
+.mono-speed-overlay.mono-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mono-speed-overlay button {
+  cursor: pointer;
+  padding: 2px 6px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.mono-speed-overlay button:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
+.mono-speed-overlay .mono-rate {
+  min-width: 34px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.mono-video-wrap {
+  position: relative;
+}
+
+/* Hotkey toast shown briefly when a shortcut changes playback rate */
+.mono-toast {
+  all: initial;
+  position: fixed;
+  z-index: 2147483001;
+  left: 50%;
+  bottom: 64px;
+  transform: translateX(-50%);
+  background: #000000;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 13px;
+  padding: 8px 14px;
+  opacity: 0;
+  transition: opacity 150ms ease;
+}
+
+.mono-toast.mono-show {
+  opacity: 1;
+}
+
+/* Placeholder left behind when a short-form video container is collapsed,
+   so page layout / infinite-scroll triggers don't break. */
+.mono-collapsed {
+  display: none !important;
+}

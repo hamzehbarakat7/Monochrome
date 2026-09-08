@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Monochrome</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+
+    <header class="app-header">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">Monochrome</span>
+      </div>
+      <div class="host-chip" id="hostChip">—</div>
+    </header>
+
+    <nav class="tabbar" role="tablist" aria-label="Sections">
+      <button class="tab is-active" role="tab" aria-selected="true" data-tab="clock" id="tabClock">
+        Clock
+      </button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="media" id="tabMedia">
+        Media
+      </button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="blocker" id="tabBlocker">
+        Blocker
+      </button>
+    </nav>
+
+    <main class="panels">
+
+      <!-- ================= CLOCK & TIMER ================= -->
+      <section class="panel is-active" data-panel="clock" role="tabpanel" aria-labelledby="tabClock">
+
+        <div class="clock-block">
+          <div class="clock-readout" id="clockReadout">00:00:00</div>
+          <div class="clock-row">
+            <span class="clock-date" id="clockDate">—</span>
+            <button class="pill-toggle" id="formatToggle" aria-pressed="false">24h</button>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="timer-block">
+          <div class="section-label">Countdown timer</div>
+
+          <div class="timer-inputs" id="timerInputs">
+            <label class="timer-field">
+              <input type="number" id="timerMin" min="0" max="999" value="5" inputmode="numeric" />
+              <span>min</span>
+            </label>
+            <label class="timer-field">
+              <input type="number" id="timerSec" min="0" max="59" value="0" inputmode="numeric" />
+              <span>sec</span>
+            </label>
+          </div>
+
+          <div class="timer-readout" id="timerReadout">05:00</div>
+
+          <div class="progress-track">
+            <div class="progress-fill" id="timerProgress"></div>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn btn-primary" id="timerStart">Start</button>
+            <button class="btn" id="timerPause" disabled>Pause</button>
+            <button class="btn" id="timerReset">Reset</button>
+          </div>
+
+          <p class="hint" id="timerHint">Runs in the background — you'll get a notification when it ends.</p>
+        </div>
+
+      </section>
+
+      <!-- ================= MEDIA ================= -->
+      <section class="panel" data-panel="media" role="tabpanel" aria-labelledby="tabMedia" hidden>
+
+        <div class="section-label-row">
+          <div class="section-label">Video speed controller</div>
+          <button class="switch" id="speedToggle" role="switch" aria-checked="true">
+            <span class="switch-knob"></span>
+          </button>
+        </div>
+        <p class="hint">Adds a hover overlay to every video on the page — 0.25× to 4.00×, plus hotkeys.</p>
+
+        <div class="hotkey-grid">
+          <div class="hotkey"><span class="key">S</span><span>slower −0.25×</span></div>
+          <div class="hotkey"><span class="key">D</span><span>faster +0.25×</span></div>
+          <div class="hotkey"><span class="key">R</span><span>reset to 1×</span></div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section-label-row">
+          <div class="section-label">Media on this page</div>
+          <button class="btn btn-small" id="scanBtn">Scan page</button>
+        </div>
+
+        <ul class="media-list" id="mediaList">
+          <li class="media-empty" id="mediaEmpty">Scan this page to find video, audio, and image sources.</li>
+        </ul>
+
+      </section>
+
+      <!-- ================= BLOCKER ================= -->
+      <section class="panel" data-panel="blocker" role="tabpanel" aria-labelledby="tabBlocker" hidden>
+
+        <div class="section-label-row">
+          <div class="section-label">Short-form content blocker</div>
+          <button class="switch" id="blockerMaster" role="switch" aria-checked="true">
+            <span class="switch-knob"></span>
+          </button>
+        </div>
+        <p class="hint">Collapses short-form video feeds as you browse. Toggle each platform below.</p>
+
+        <ul class="platform-list">
+          <li class="platform-row">
+            <div class="platform-info">
+              <span class="platform-name">YouTube Shorts</span>
+              <span class="platform-count" id="countYoutube">0 hidden</span>
+            </div>
+            <button class="switch switch-sm" id="toggleYoutube" role="switch" aria-checked="true">
+              <span class="switch-knob"></span>
+            </button>
+          </li>
+          <li class="platform-row">
+            <div class="platform-info">
+              <span class="platform-name">Instagram Reels</span>
+              <span class="platform-count" id="countInstagram">0 hidden</span>
+            </div>
+            <button class="switch switch-sm" id="toggleInstagram" role="switch" aria-checked="true">
+              <span class="switch-knob"></span>
+            </button>
+          </li>
+          <li class="platform-row">
+            <div class="platform-info">
+              <span class="platform-name">TikTok feed</span>
+              <span class="platform-count" id="countTiktok">0 hidden</span>
+            </div>
+            <button class="switch switch-sm" id="toggleTiktok" role="switch" aria-checked="true">
+              <span class="switch-knob"></span>
+            </button>
+          </li>
+        </ul>
+
+        <p class="hint hint-quiet">Counts reflect the active tab and reset on reload.</p>
+
+      </section>
+
+    </main>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

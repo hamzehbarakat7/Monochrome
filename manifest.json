@@ -1,0 +1,55 @@
+{
+  "manifest_version": 3,
+  "name": "Monochrome — Focus, Media & Utility Suite",
+  "version": "1.0.0",
+  "description": "A high-contrast dark utility extension: precision clock/timer, a Shorts/Reels/TikTok feed blocker, an on-page video speed controller, and a page media scanner.",
+
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "downloads",
+    "webRequest",
+    "alarms",
+    "notifications",
+    "tabs"
+  ],
+
+  "host_permissions": [
+    "<all_urls>"
+  ],
+
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Monochrome",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["injected.css"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+
+  "minimum_chrome_version": "110"
+}
